@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * @author TODO: please add student ID and name here
+ * @author TODO: B0344250 歐宜宣
  * Try to write some comments for your codes (methods, 15 points)
  */
 public class HW2 {
@@ -26,8 +26,8 @@ public class HW2 {
 	}
 	/**
 	 * This method is used for checking your result, not a part of your HW2
-	 * @param allCards 所有的牌
-	 * @param nDeck 總共有幾副牌
+	 * @param allCards �������
+	 * @param nDeck 蝮賢��嗾����
 	 * @return
 	 */
 	private static boolean isAllCardsCorrect(ArrayList<Card> allCards,int nDeck){
@@ -64,8 +64,11 @@ public class HW2 {
 
 }
 /**
- * Description: TODO: please add description here
+ * Description: TODO: 宣告i,x,y三個變數，i代表有幾副牌、x代表的是花色(共有四種)、y代表的則是點數(1-13)，
+ * 用for迴圈可以從第一副的第一張牌取到最後一副的最後一張牌(從1-13、梅花到黑桃)，
+ * 取出後再使用printCard將牌全數印出。 
  */
+
 class Deck{
 	private ArrayList<Card> cards;
 	//TODO: Please implement the constructor (30 points)
@@ -77,20 +80,39 @@ class Deck{
 		//Card card=new Card(1,1); ->means new card as clubs ace
 		//cards.add(card);
 		//Sample code end
+		for(int i =0;i < nDeck; i++)
+			{
+				for(int x =1;x < 5;x++)
+					{
+						for(int y = 1;y<14;y++)
+							{
+								Card card = new Card (x,y);
+								cards.add(card);
+							}
+					}
+			}
 
 	}	
 	//TODO: Please implement the method to print all cards on screen (10 points)
 	public void printDeck(){
 		//Hint: print all items in ArrayList<Card> cards, 
 		//TODO: please implement and reuse printCard method in Card class (5 points)
+		
+		for (Card Pcard:cards)
+		{
+			Pcard.printCard(Pcard);
+		}
 
+			
 	}
 	public ArrayList<Card> getAllCards(){
 		return cards;
 	}
 }
 /**
- * Description: TODO: please add description here
+ * Description: TODO: 用if&else if去判斷花色(suit)跟點數(rank)，
+ * 宣告PokerSuit&PokerRank為String，用來顯示花色及點數,並輸出。
+ * (因為rank有部分要顯示數字，但PokerRank為String所以必須先將rank轉成String才能輸出)
  */
 class Card{
 	private int suit; //Definition: 1~4, Clubs=1, Diamonds=2, Hearts=3, Spades=4
@@ -101,12 +123,53 @@ class Card{
 	 */
 	public Card(int s,int r){
 		suit=s;
-		rank=r;
+		rank=r;	
 	}	
 	//TODO: 1. Please implement the printCard method (20 points, 10 for suit, 10 for rank)
-	public void printCard(){
+	public void printCard(Card card){
 		//Hint: print (System.out.println) card as suit,rank, for example: print 1,1 as Clubs Ace
-
+		String PokerSuit = null ;
+		String PokerRank = null;
+		Integer R = card.rank;
+		if (card.suit == 1)
+			{
+				PokerSuit = "Clubs";
+			}
+		else if(card.suit==2)
+			{
+				PokerSuit = "Diamonds";
+			}
+		else if(card.suit==3)
+			{
+				PokerSuit = "Hearts";
+			}
+		else if(card.suit==4)
+			{
+				PokerSuit = "Spades";
+			}
+	
+		if (card.rank == 1)
+			{
+				PokerRank = "Ace";
+			}
+		else if(card.rank == 11)
+			{
+				PokerRank ="Jack";
+			}
+		else if(card.rank == 12)
+			{
+				PokerRank ="Queen";
+			}
+		else if(card.rank == 13)
+			{
+				PokerRank ="King";
+			}
+		else
+			{
+				PokerRank = R.toString();
+			}
+	
+		System.out.println(PokerSuit + PokerRank);
 	}
 	public int getSuit(){
 		return suit;
